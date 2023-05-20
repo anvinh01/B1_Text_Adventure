@@ -1,4 +1,6 @@
-﻿namespace States
+﻿using System.Collections.Generic;
+
+namespace States
 {
     public class Ambulance : State
     {
@@ -7,14 +9,21 @@
         {
             _stateManager = stateManager;
         }
-        public string Dialog()
-        {
-            throw new System.NotImplementedException();
-        }
 
         public void init()
         {
-            throw new System.NotImplementedException();
+            _stateManager.dialogue = new List<Dialogue>()
+            {
+                new Dialogue("Ahhhhhhhhhhh", "Tony"),
+                new Dialogue("HE IS AWAKE!!", "???"),
+                new Dialogue("Tony? Tony? It's me Mom. We are all here. How are you dear?", "Mom"),
+                new Dialogue("He is probably still in shock", "Brother"),
+                new Dialogue("Oh my god. I just had a weird dream", "Tony"),
+                new Dialogue(
+                    "That was not a Dream, but the real Noobmaster69 kicking him out of heaven. But he couldn't know that",
+                    "Narrator"),
+            };
+        throw new System.NotImplementedException();
         }
 
         public void button1()

@@ -10,8 +10,12 @@ public class StateManager : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private TextMeshProUGUI storyBoard;
+    [SerializeField] private TextMeshProUGUI dialogName;
 
     public State currState;
+    public State nextState;             // Next state to transition to, after transition dialog
+    public bool isTransitioning = false;
+    
     public State bedroom;
     public State onTheStreet;
     public State myComputer;
@@ -31,8 +35,9 @@ public class StateManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI button3;
 
 
-    public ArrayList dialogue = new ArrayList();
-    private int dialogueIndex = 0;
+    // ReSharper disable once InconsistentNaming
+    public List<Dialogue> dialogue = new List<Dialogue>();
+    private int _dialogueIndex = 0;
     // conditions
     public ArrayList totalWorkHours = new ArrayList();
     public int sleepTime;
@@ -73,35 +78,54 @@ public class StateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        storyBoard.text = dialogue[dialogueIndex].ToString();
-        button1.transform.parent.gameObject.SetActive(button1.text != "" && dialogueIndex == dialogue.Count - 1);
-        button2.transform.parent.gameObject.gameObject.SetActive(button2.text != "" && dialogueIndex == dialogue.Count - 1);
-        button3.transform.parent.gameObject.gameObject.SetActive(button3.text != "" && dialogueIndex == dialogue.Count - 1);
+        storyBoard.text = dialogue[_dialogueIndex].text;
+        dialogName.text = dialogue[_dialogueIndex].person;
+        
+        dialogName.transform.parent.gameObject.SetActive(dialogName.text != "narrator");
+        button1.transform.parent.gameObject.SetActive(button1.text != "" && _dialogueIndex == dialogue.Count - 1 && !isTransitioning);
+        button2.transform.parent.gameObject.gameObject.SetActive(button2.text != "" && _dialogueIndex == dialogue.Count - 1 && !isTransitioning);
+        button3.transform.parent.gameObject.gameObject.SetActive(button3.text != "" && _dialogueIndex == dialogue.Count - 1 && !isTransitioning);
     }
 
     public void button1_Click()
     {
         currState.button1();
+        Debug.Log($"WorkingHours: {workHours}");
+        _dialogueIndex = 0;
+        if (isTransitioning) return;
+        currState = nextState;
         currState.init();
-        dialogueIndex = 0;
     }
 
     public void button2_Click()
     {
         currState.button2();
+        _dialogueIndex = 0;
+        if (isTransitioning) return;
+        currState = nextState;
         currState.init();
-        dialogueIndex = 0;
     }
     
     public void button3_Click()
     {
         currState.button3();
+        _dialogueIndex = 0;
+        if (isTransitioning) return;
+        currState = nextState;
         currState.init();
-        dialogueIndex = 0;
     }
 
-    public void nextDialogue()
+    public void NextDialogue()
     {
-        dialogueIndex += dialogueIndex != dialogue.Count - 1? 1 : 0;
+        _dialogueIndex += isTransitioning || (_dialogueIndex != dialogue.Count - 1)  ? 1 : 0;
+        Debug.Log($"this dialogue index is {_dialogueIndex}");
+        if (_dialogueIndex == dialogue.Count && isTransitioning)
+        {
+            Debug.Log($"after trans: {_dialogueIndex}");
+            currState = nextState;
+            isTransitioning = false;
+            _dialogueIndex = 0;
+            currState.init();
+        }
     }
 }
