@@ -7,25 +7,31 @@
         {
             _stateManager = stateManager;
         }
-
-        public void button1()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void button2()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void button3()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public string Dialog()
         {
             throw new System.NotImplementedException();
         }
+        public void init()
+        {
+            _stateManager.button1.text = "Normal zur Arbeit gehen";
+            _stateManager.button2.text = "Zur Arbeit rennen";
+            _stateManager.button3.text = _stateManager.sleepTime == 25 ? "Save Child" : "";
+        }
+        
+        public void button1()
+        {
+            _stateManager.currState = _stateManager.work;
+        }
+
+        public void button2()
+        {
+            _stateManager.currState = _stateManager.heaven;
+        }
+
+        public void button3()
+        {
+            _stateManager.currState = _stateManager.heaven;
+        }
+
     }
 }
