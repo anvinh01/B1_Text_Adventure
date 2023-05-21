@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace States
 {
     public class Bedroom : State
     {
         private StateManager _stateManager;
+        private AudioClip _bedroomMusic;
+        private Image _bedroomImage;
         public Bedroom(StateManager stateManager)
         {
             _stateManager = stateManager;
+            _bedroomMusic = Resources.Load<AudioClip>("Audio/when-you-wish-upon-a-star");
+            _bedroomImage = Resources.Load<Image>("Images/small-bedroom-with-shelving");
         }
         public string Dialog()
         {
@@ -20,8 +25,7 @@ namespace States
             _stateManager.dialogue = _stateManager.sleepTime == 0 ? new List<Dialogue>()
             {
                 new Dialogue("Whaaaaaah Damm that was a nice dream. I'm still kinda sleepy. \n It's already 6:00am. Hmmmm.....",
-                    "Tony"
-                    ),
+                    "Tony", image: _bedroomImage),
                 new Dialogue("should I skip breakfast and go to sleep again?",
                     "Tony")
             }:new List<Dialogue>()

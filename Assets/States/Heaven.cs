@@ -1,19 +1,22 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace States
 {
     public class Heaven : State 
     {
         private StateManager _stateManager;
+        private readonly AudioClip _overTheRainbow;
         public Heaven(StateManager stateManager)
         {
             _stateManager = stateManager;
+            _overTheRainbow = Resources.Load<AudioClip>("Audio/Somewhere-over-the-rainbow");
         }
         public void init()
         {
             _stateManager.dialogue = new List<Dialogue>()
             {
-                new Dialogue("Suddenly, a light appears and Tony is on top of clouds"),
+                new Dialogue("Suddenly, a light appears and Tony is on top of clouds", audio:_overTheRainbow),
                 new Dialogue("Are thy exhausted?", "???"),
                 new Dialogue("What is happening? Am I in heaven?", "Tony"),
                 new Dialogue("Not yet. But thy has already proven to the lord and shown the humans on earth the warmth of a caring heart.", "???"),

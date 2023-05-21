@@ -20,15 +20,18 @@ namespace States
                 new Dialogue("He is probably still in shock", "Brother"),
                 new Dialogue("Oh my god. I just had a weird dream", "Tony"),
                 new Dialogue(
-                    "That was not a Dream, but the real Noobmaster69 kicking him out of heaven. But he couldn't know that",
+                    "That was not a Dream. But he couldn't know that. Noobmaster69 continues to kick his ass in every game he played. There was just no escape",
                     "Narrator"),
             };
-        throw new System.NotImplementedException();
+            
+            _stateManager.button1.text = "Back to menu";
+            _stateManager.button2.text = "";
+            _stateManager.button3.text = "";
         }
 
         public void button1()
         {
-            throw new System.NotImplementedException();
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
         }
 
         public void button2()

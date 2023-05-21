@@ -6,10 +6,12 @@ namespace States
 {
     public class Work : State
     {
-        private StateManager _stateManager;
+        private readonly StateManager _stateManager;
+        private readonly AudioClip _workMusic;
         public Work(StateManager stateManager)
         {
             _stateManager = stateManager;
+            _workMusic = Resources.Load<AudioClip>("Audio/when-you-wish-upon-a-star");
         }
         public void init()
         {
@@ -24,7 +26,7 @@ namespace States
             
             _stateManager.dialogue = overtimeCount == 3 ? new List<Dialogue>()
             {
-                new Dialogue("Hello There!","Tony"),
+                new Dialogue("Hello There!","Tony", _workMusic),
                 new Dialogue("General Kenobi!!", "Mark"),
                 new Dialogue("Hi *laughts\n So what is on the plan today?", "Tony"),
                 new Dialogue("Well it seems like I got a meeting with HR today again. Do you also want to attend?", "Mark"),

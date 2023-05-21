@@ -50,6 +50,7 @@ namespace States
         public void button3()
         {
             _stateManager.totalWorkHours.Add(_stateManager.workHours);
+            _stateManager.workHours = 0;
             _stateManager.nextState = _stateManager.bedroom;
             _stateManager.dialogue = new List<Dialogue>()
             {

@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace States
 {
     public class MyComputer : State
     {
         private StateManager _stateManager;
-
+        private Image _computerImage;
         public MyComputer(StateManager stateManager)
         {
             _stateManager = stateManager;
+            _computerImage = Resources.Load<Image>("Images/office-computer-screen");
         }
 
         public void init()
@@ -21,7 +23,7 @@ namespace States
                 {
                     new Dialogue(
                         "Well let's see.... No merge request, no meetings today. I guess I'll still have to work on that bug.",
-                        "Tony"),
+                        "Tony", image: _computerImage),
                     new Dialogue("*working sounds"),
                 }
                 : new List<Dialogue>()
@@ -47,6 +49,8 @@ namespace States
 
         public void button3()
         {
+            _stateManager.totalWorkHours.Add(_stateManager.workHours);
+            _stateManager.workHours = 0;
             _stateManager.nextState = _stateManager.bedroom;
             _stateManager.dialogue = new List<Dialogue>()
             {
