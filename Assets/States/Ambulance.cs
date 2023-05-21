@@ -5,6 +5,7 @@ namespace States
     public class Ambulance : State
     {
         private StateManager _stateManager;
+
         public Ambulance(StateManager stateManager)
         {
             _stateManager = stateManager;
@@ -23,7 +24,7 @@ namespace States
                     "That was not a Dream. But he couldn't know that. Noobmaster69 continues to kick his ass in every game he played. There was just no escape",
                     "Narrator"),
             };
-            
+
             _stateManager.button1.text = "Back to menu";
             _stateManager.button2.text = "";
             _stateManager.button3.text = "";

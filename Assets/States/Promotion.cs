@@ -18,8 +18,10 @@ namespace States
                 new Dialogue("Yeah it seems that way. Yes sir, I have time right now!", "Tony"),
                 new Dialogue(
                     "The morning sun cast a warm glow through the office windows as employees hurriedly prepared for another busy day. "),
-                new Dialogue("The air was filled with anticipation and nervous energy, as rumors of promotions and career advancements had been circulating for weeks."),
-                new Dialogue(" Among the employees was Tony, a dedicated and hardworking individual who had been with the company for several years. Little did Tony know that today would be a defining moment in their professional life."),
+                new Dialogue(
+                    "The air was filled with anticipation and nervous energy, as rumors of promotions and career advancements had been circulating for weeks."),
+                new Dialogue(
+                    " Among the employees was Tony, a dedicated and hardworking individual who had been with the company for several years. Little did Tony know that today would be a defining moment in their professional life."),
                 new Dialogue("Good morning, Mr. Anderson. How can I assist you today?", "Tony"),
                 new Dialogue(
                     "Good morning, Tony. Could we have a quick chat in my office? I'd like to discuss something important with you.",
@@ -33,7 +35,8 @@ namespace States
                     "Mr.Anderson"),
                 new Dialogue(
                     "The words hung in the air, sinking into Tony's mind. It took a moment for the gravity of the situation to fully sink in."),
-                new Dialogue("A promotion? Tony's heart soared with a mix of relief and joy. Their hard work had paid off, and their dreams of advancement were finally becoming a reality"),
+                new Dialogue(
+                    "A promotion? Tony's heart soared with a mix of relief and joy. Their hard work had paid off, and their dreams of advancement were finally becoming a reality"),
                 new Dialogue(
                     "Thank you, Mr. Anderson. I can't express how honored and grateful I am for this opportunity. I won't let you down.",
                     "Tony"),
@@ -46,7 +49,8 @@ namespace States
                     "As they left Mr. Anderson's office, Tony couldn't contain their excitement. They walked through the office with a newfound confidence, a spring in their step. Co-workers noticed the radiant smile on Tony's face, and whispers of congratulations filled the air."),
                 new Dialogue(
                     "Passing by their colleagues, Tony exchanged joyful glances and grateful nods. Their promotion not only symbolized personal growth but also served as a source of inspiration for others."),
-                new Dialogue(" They felt a responsibility to lead by example, to show that hard work and dedication could be rewarded."),
+                new Dialogue(
+                    " They felt a responsibility to lead by example, to show that hard work and dedication could be rewarded."),
                 new Dialogue("It seems like a good ending, but we all know that it is just fiction.")
             };
 

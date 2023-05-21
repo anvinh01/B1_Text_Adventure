@@ -13,20 +13,20 @@ public class StateManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI storyBoard;
     [SerializeField] private TextMeshProUGUI dialogName;
     [SerializeField] private AudioSource speaker;
-    
+
     public State currState;
-    public State nextState;             // Next state to transition to, after transition dialog
+    public State nextState; // Next state to transition to, after transition dialog
     public bool isTransitioning = false;
-    
+
     public State bedroom;
     public State onTheStreet;
     public State myComputer;
-    
+
     public State heaven;
     public State ambulance;
     public State isekai;
     public State restForEternity;
-    
+
     public State work;
     public State myWorkPC;
     public State coffeRoom;
@@ -38,28 +38,31 @@ public class StateManager : MonoBehaviour
 
     private AudioClip _audioTest;
     static float _audioVolume = 0.8f;
+
     // ReSharper disable once InconsistentNaming
     public List<Dialogue> dialogue = new List<Dialogue>();
+
     private int _dialogueIndex = 0;
+
     // conditions
-    public ArrayList totalWorkHours = new ArrayList();
+    public ArrayList TotalWorkHours = new ArrayList();
     public int sleepTime;
     public int workHours;
     public bool savedChild;
-    
+
     void Start()
     {
         _audioTest = Resources.Load<AudioClip>("Audio/I-see-the-light");
         speaker.clip = _audioTest;
         speaker.Play();
-        
+
         button1.text = "button 1";
         button2.text = "button 2";
         button3.text = "button 3";
-        
+
         storyBoard.text = "Hello";
         storyBoard.color = Color.white;
-        
+
         bedroom = new Bedroom(this);
         onTheStreet = new OnTheStreet(this);
         myComputer = new MyComputer(this);
@@ -67,16 +70,15 @@ public class StateManager : MonoBehaviour
         ambulance = new Ambulance(this);
         isekai = new Isekai(this);
         restForEternity = new Rest(this);
-        
+
         work = new Work(this);
         myWorkPC = new WorkPC(this);
         coffeRoom = new CoffeeRoom(this);
         promotion = new Promotion(this);
-        
+
 
         currState = bedroom;
         currState.init();
-        
     }
 
     // Update is called once per frame
@@ -86,9 +88,14 @@ public class StateManager : MonoBehaviour
         dialogName.text = dialogue[_dialogueIndex].person;
         speaker.volume = _audioVolume;
         dialogName.transform.parent.gameObject.SetActive(dialogName.text != "narrator");
-        button1.transform.parent.gameObject.SetActive(button1.text != "" && _dialogueIndex == dialogue.Count - 1 && !isTransitioning);
-        button2.transform.parent.gameObject.gameObject.SetActive(button2.text != "" && _dialogueIndex == dialogue.Count - 1 && !isTransitioning);
-        button3.transform.parent.gameObject.gameObject.SetActive(button3.text != "" && _dialogueIndex == dialogue.Count - 1 && !isTransitioning);
+        button1.transform.parent.gameObject.SetActive(button1.text != "" && _dialogueIndex == dialogue.Count - 1 &&
+                                                      !isTransitioning);
+        button2.transform.parent.gameObject.gameObject.SetActive(button2.text != "" &&
+                                                                 _dialogueIndex == dialogue.Count - 1 &&
+                                                                 !isTransitioning);
+        button3.transform.parent.gameObject.gameObject.SetActive(button3.text != "" &&
+                                                                 _dialogueIndex == dialogue.Count - 1 &&
+                                                                 !isTransitioning);
     }
 
     public void button1_Click()
@@ -109,7 +116,7 @@ public class StateManager : MonoBehaviour
         if (isTransitioning) return;
         Next();
     }
-    
+
     public void button3_Click()
     {
         currState.button3();
@@ -121,8 +128,7 @@ public class StateManager : MonoBehaviour
 
     public void NextDialogue()
     {
-        
-        _dialogueIndex += isTransitioning || (_dialogueIndex != dialogue.Count - 1)  ? 1 : 0;
+        _dialogueIndex += isTransitioning || (_dialogueIndex != dialogue.Count - 1) ? 1 : 0;
 
         Debug.Log($"this dialogue index is {_dialogueIndex}");
 
@@ -132,7 +138,7 @@ public class StateManager : MonoBehaviour
             isTransitioning = false;
             Next();
         }
-        
+
         CheckAudio();
     }
 
@@ -142,7 +148,6 @@ public class StateManager : MonoBehaviour
         currState = nextState;
         _dialogueIndex = 0;
         currState.init();
-        
     }
 
     private void CheckAudio()
@@ -171,13 +176,12 @@ public class StateManager : MonoBehaviour
         currState = bedroom;
         nextState = null;
         _dialogueIndex = 0;
-        totalWorkHours = new ArrayList();
+        TotalWorkHours = new ArrayList();
         workHours = 0;
         sleepTime = 0;
         isTransitioning = false;
         speaker.clip = _audioTest;
         speaker.Play();
         currState.init();
-
     }
 }

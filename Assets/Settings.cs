@@ -11,7 +11,7 @@ public class Settings : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI walkthroughWindow;
     [SerializeField] private TextMeshProUGUI audioWindow;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,6 @@ public class Settings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void OpenWalkthroughWindow()
@@ -38,10 +37,9 @@ public class Settings : MonoBehaviour
         audioWindow.transform.parent.gameObject.SetActive(true);
         walkthroughWindow.transform.parent.gameObject.SetActive(false);
     }
+
     public void SwitchSettingsPanel()
     {
         this.gameObject.SetActive(!this.gameObject.activeSelf);
     }
-
-
 }
