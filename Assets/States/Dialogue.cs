@@ -9,7 +9,8 @@ namespace States
         public string person;
         public AudioClip audio;
         public Image image;
-        public Dialogue(string text, string person="narrator", AudioClip audio = null, Image image = null)
+
+        public Dialogue(string text, string person = "narrator", AudioClip audio = null, Image image = null)
         {
             this.text = person != "narrator" ? $"{text}" : text;
             this.person = person;
